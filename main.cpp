@@ -11,6 +11,7 @@ const int SCREEN_HEIGHT = 600;
 
 class HelloTriangleApplication {
 public:
+    int64_t framecounter;
     void run() {
         if (initWindow() ) {
             initVulkan();
@@ -79,6 +80,8 @@ private:
         if (result != VK_SUCCESS) {
             throw std::runtime_error("failed to create vulkan instance!");
         }
+
+        framecounter = 0;
     }
 
     void initVulkan() {
@@ -87,6 +90,7 @@ private:
 
     void mainLoop() {
         while (!glfwWindowShouldClose(window)) {
+            framecounter++;
             glfwPollEvents();
         }
     }
